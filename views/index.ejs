@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" href="../public/style.css" type="text/css">
     <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
 </head>
 <body>
@@ -33,37 +34,8 @@
 
 </form>
 
-<!--<div class="filter">-->
-<!--    <form action="routes.js" method="post">-->
-<!--        <div class="filter_l">-->
-<!--            <div class="kbox">-->
-<!--                <input type="radio" id="inLib" value="inLib"/>-->
-<!--                <label for="rajon_1">-->
-<!--                    <span class="filter_name">В наличии</span>-->
-<!--                </label>-->
-<!--            </div>-->
-<!--            <div class="kbox">-->
-<!--                <input type="radio" id="overdue" value="overdue"  />-->
-<!--                <label for="rajon_2">-->
-<!--                    <span class="filter_name">Просроченные</span>-->
-<!--                </label>-->
-<!--            </div>-->
-<!--            <div class="kbox">-->
-<!--                <input type="radio" id="none" value="none"  checked/>-->
-<!--                <label for="rajon_3">-->
-<!--                    <span class="filter_name">None</span>-->
-<!--                </label>-->
-<!--            </div>-->
 
-<!--        </div>-->
-<!--    </form>-->
-<!--</div>-->
-<!--<div class="content" id="content"></div>-->
-
-
-
-
-<button id ="addBut" onclick="onAddButtonClick()"> Add!</button>
+<button id ="addBut" onclick="onAddButtonClick()"> Добавить книгу</button>
 <!--<%- include('ui/book_list')%>-->
 
 
@@ -81,10 +53,8 @@
     <div id = "card" class = "card <%=elem.isInLib.messageIsInLib%> <%=elem.isInLib.messageIsOverdue%>">
         <div id=<%=elem.id%> onclick="load(this)" >
             <%=elem.name%>
-            <p>
-            <%=elem.author%>
-            <p>
 
+            <%=elem.author%>
         </div>
         <button id="delBookButton" onclick="onClickDelBookButton(<%=elem.id%>)">del</button>
     </div>

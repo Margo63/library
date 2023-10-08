@@ -1,0 +1,14 @@
+button{
+    font-size: 35px;
+    background-color: lightcyan;
+
+}
+
+.card{
+    font-size: 35px;
+    display: flex;
+    background-color: aquamarine;
+    margin-top: 20px;
+    padding: 10px;
+    flex-direction: row;
+}
