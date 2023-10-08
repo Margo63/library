@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "name": "Привет",
+    "author": "B",
+    "dateCreate": "15.04.2020",
+    "description": "ghfjd",
+    "isInLib": {
+      "message": true
+    }
+  },
+  {
+    "id": 2,
+    "name": "AA",
+    "author": "BB",
+    "dateCreate": "15.04.2020",
+    "description": "ghfjd",
+    "isInLib": {
+      "message": false,
+      "nameReader": "hgf",
+      "whenBack": "12.02.42"
+    }
+
+
+  }
+]

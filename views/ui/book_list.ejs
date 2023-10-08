@@ -1,0 +1,13 @@
+
+<ol>
+    <% listData.forEach((elem)=>{%>
+    <li>
+        <div id=<%=elem.id%> onclick="load(this)">
+            <%=elem.name%>
+            <p>
+            <%=elem.author%>
+        </div>
+
+    </li>
+    <%});%>
+</ol>
