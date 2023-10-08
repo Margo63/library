@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Card</title>
+</head>
+<body>
+<dialog id = "changeDialog">
+    <form>
+        <label for="fname">First name:</label><br>
+        <input type="text" id="ffname" name="fname"><br>
+        <label for="lname">Last name:</label><br>
+        <input type="text" id="llname" name="lname">
+    </form>
+    <button id ="closeChangeDialogButton" onclick="onCloseChangeDialogButtonClick(<%=element.id%>)"> Close!</button>
+</dialog>
+<button id = "change_button" onclick="onChangeDialogButtonClick()">изменить</button>
+<%=element.name%>
+
+<script src = "/public/card_ajax.js"></script>
+</body>
+</html>

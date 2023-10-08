@@ -5,8 +5,38 @@
     <title>Title</title>
 </head>
 <body>
-<%- include('ui/book_list')%>
-<button id ="1" onclick="load(this)"> Click!</button>
+
+<dialog id = "addDialog">
+    <form>
+        <label for="fname">First name:</label><br>
+        <input type="text" id="fname" name="fname"><br>
+        <label for="lname">Last name:</label><br>
+        <input type="text" id="lname" name="lname">
+    </form>
+    <button id ="closeBut" onclick="onCloseButtonClick()"> Close!</button>
+</dialog>
+<button id ="addBut" onclick="onAddButtonClick()"> Add!</button>
+<!--<%- include('ui/book_list')%>-->
+<ol id = "listData">
+    <%listData.forEach((elem)=>{
+
+    // if(maxId<Number(elem.id)){
+    //     maxId = Number(elem.id)
+    // }
+    // console.log(elem.id,maxId)
+    %>
+    <li>
+        <div id=<%=elem.id%> onclick="load(this)">
+            <%=elem.name%>
+            <p>
+            <%=elem.author%>
+            <p>
+
+        </div>
+        <button id="delBookButton" onclick="onClickDelBookButton(<%=elem.id%>)">del</button>
+    </li>
+    <%});%>
+</ol>
 
 <script src = "../public/ajax.js"></script>
 </body>
