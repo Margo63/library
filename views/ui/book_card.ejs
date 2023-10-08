@@ -14,8 +14,30 @@
     </form>
     <button id ="closeChangeDialogButton" onclick="onCloseChangeDialogButtonClick(<%=element.id%>)"> Close!</button>
 </dialog>
+
+
+<dialog id = "addReaderDialog">
+    <form>
+        <label>Name:</label><br>
+        <input type="text" id="fffname" name="fname">
+    </form>
+    <button id ="closeAddReaderDialogButton" onclick="onTakeBookClicked(<%=element.id%>)"> Close!</button>
+</dialog>
+
+
 <button id = "change_button" onclick="onChangeDialogButtonClick()">изменить</button>
+<br>
 <%=element.name%>
+<% if(element.isInLib.messageIsInLib === "inLib"){%>
+    <br>
+    <button id = "takeBook" onclick="f()">Взять</button>
+
+<%}else { %>
+    <br>
+    <%= element.isInLib.nameReader%><br>
+    <%= element.isInLib.whenBack%><br>
+    <button id = "putBook" onclick="onPutBookClicked(<%=element.id%>)">Вернуть</button>
+<%}%>
 
 <script src = "/public/card_ajax.js"></script>
 </body>

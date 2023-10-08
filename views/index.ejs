@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
 </head>
 <body>
 
@@ -15,9 +16,60 @@
     </form>
     <button id ="closeBut" onclick="onCloseButtonClick()"> Close!</button>
 </dialog>
+
+
+<form>
+
+        <div>
+            <input type="radio" id="contactChoice1" name="contact" value="inLib" />
+            <label for="contactChoice1">В наличии</label>
+
+            <input type="radio" id="contactChoice2" name="contact" value="overdue" />
+            <label for="contactChoice2">Просроченные</label>
+
+            <input type="radio" id="contactChoice3" name="contact" value="none" checked/>
+            <label for="contactChoice3">None</label>
+        </div>
+
+</form>
+
+<!--<div class="filter">-->
+<!--    <form action="routes.js" method="post">-->
+<!--        <div class="filter_l">-->
+<!--            <div class="kbox">-->
+<!--                <input type="radio" id="inLib" value="inLib"/>-->
+<!--                <label for="rajon_1">-->
+<!--                    <span class="filter_name">В наличии</span>-->
+<!--                </label>-->
+<!--            </div>-->
+<!--            <div class="kbox">-->
+<!--                <input type="radio" id="overdue" value="overdue"  />-->
+<!--                <label for="rajon_2">-->
+<!--                    <span class="filter_name">Просроченные</span>-->
+<!--                </label>-->
+<!--            </div>-->
+<!--            <div class="kbox">-->
+<!--                <input type="radio" id="none" value="none"  checked/>-->
+<!--                <label for="rajon_3">-->
+<!--                    <span class="filter_name">None</span>-->
+<!--                </label>-->
+<!--            </div>-->
+
+<!--        </div>-->
+<!--    </form>-->
+<!--</div>-->
+<!--<div class="content" id="content"></div>-->
+
+
+
+
 <button id ="addBut" onclick="onAddButtonClick()"> Add!</button>
 <!--<%- include('ui/book_list')%>-->
-<ol id = "listData">
+
+
+<div id = "listData">
+
+
     <%listData.forEach((elem)=>{
 
     // if(maxId<Number(elem.id)){
@@ -25,8 +77,9 @@
     // }
     // console.log(elem.id,maxId)
     %>
-    <li>
-        <div id=<%=elem.id%> onclick="load(this)">
+
+    <div id = "card" class = "card <%=elem.isInLib.messageIsInLib%> <%=elem.isInLib.messageIsOverdue%>">
+        <div id=<%=elem.id%> onclick="load(this)" >
             <%=elem.name%>
             <p>
             <%=elem.author%>
@@ -34,10 +87,38 @@
 
         </div>
         <button id="delBookButton" onclick="onClickDelBookButton(<%=elem.id%>)">del</button>
-    </li>
+    </div>
     <%});%>
-</ol>
+</div>
+
+
 
 <script src = "../public/ajax.js"></script>
+<script>
+    var radioBut = document.querySelectorAll("input[type=radio]");
+    let enabledSettings = []
+
+
+    radioBut.forEach(function(radio) {
+        radio.addEventListener('change', function() {
+            enabledSettings =
+                Array.from(radioBut) // Convert checkboxes to an array to use filter and map.
+                    .filter(i => i.checked) // Use Array.filter to remove unchecked checkboxes.
+                    .map(i => i.value)[0] // Use Array.map to extract only the checkbox values from the array of objects.
+
+            console.log(enabledSettings)
+            $( ".card" ).css( "transform", "scale(1)" )
+
+            $( ".card" ).css( "transform", "scale(0)" ).filter("."+enabledSettings).css( "transform", "scale(1)" );
+
+            if(enabledSettings ==="none"){
+                $(  ".card"  ).css( "transform", "scale(1)" )
+            }
+
+        })
+    });
+
+
+</script>
 </body>
 </html>

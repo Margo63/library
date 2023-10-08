@@ -25,13 +25,13 @@ function onCloseChangeDialogButtonClick(cardId){
     changeDialog.close()
 
     const body = {
-        "id": cardId,
+        "whatChange": "book",
         "name": document.getElementById("ffname").value,
         "author": document.getElementById("llname").value,
         "dateCreate": "",
         "description": "",
         "isInLib": {
-            "message": true
+            "messageIsInLib": "inLib"
         }
     }
 
@@ -42,4 +42,40 @@ function onCloseChangeDialogButtonClick(cardId){
 function onChangeDialogButtonClick(){
     const changeDialog = document.getElementById("changeDialog")
     changeDialog.show()
+}
+
+function onTakeBookClicked(cardId){
+    const changeDialog = document.getElementById("addReaderDialog")
+    changeDialog.close()
+    var now = new Date()
+    now.setDate(now.getDate()+14)
+    console.log(now)
+    const body = {
+        "whatChange":"user",
+        "isInLib": {
+            "messageIsInLib": "notInLib",
+            "messageIsOverdue": "ok",
+            "nameReader": document.getElementById("fffname").value,
+            "whenBack": now
+        }
+    }
+
+    sendRequest("PUT",`/books/${cardId}`,body)
+    window.location = `/books/${cardId}`
+}
+
+function onPutBookClicked(cardId){
+    const body = {
+        "whatChange":"user",
+        "isInLib": {
+            "messageIsInLib": "inLib"
+        }
+    }
+
+    sendRequest("PUT",`/books/${cardId}`,body)
+    window.location = `/books/${cardId}`
+}
+
+function f() {
+    document.getElementById('addReaderDialog').show()
 }

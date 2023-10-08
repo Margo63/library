@@ -1,3 +1,23 @@
+// var checkboxState = '';
+// document.ready(function() {
+//     'input'.change(function() {
+//         checkboxState = '';
+//         'input'.each(function() {
+//             if (this.checked) {
+//                 checkboxState += $(this).val() + ' ';
+//             }
+//         });
+//
+//         // отправка запроса и вывод результата
+//         //$('#content').html(checkboxState);
+//         //console.log(checkboxState)
+//     });
+// });
+
+
+
+
+
 function load(button) {
     let id = button.id;
 
@@ -67,14 +87,13 @@ function onCloseButtonClick(){
     addDialog.close()
 
     const body = {
-        "id": document.getElementById("listData").childNodes.length+
-            document.getElementById("fname").value.length + document.getElementById("lname").value.length ,
+        "id":  0,
         "name": document.getElementById("fname").value,
         "author": document.getElementById("lname").value,
-        "dateCreate": "",
-        "description": "",
+        "dateCreate": "10.10.2023",
+        "description": "goood",
         "isInLib": {
-            "message": true
+            "messageIsInLib": "inLib"
         }
     }
 
@@ -84,21 +103,26 @@ function onCloseButtonClick(){
 
 function onClickDelBookButton(book_id){
 
-
+    let isBookDel = confirm("Вы уверены?")
 
     //sendRequest("DELETE",`/books/${book_id}`)
-    var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function() {
-        if (this.readyState === 4 && this.status === 200){
-            callback(this.responseText);
+    if(isBookDel){
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState === 4 && this.status === 200){
+                callback(this.responseText);
 
-        }
+            }
 
-    };
+        };
 
-    xhttp.open("DELETE", `/books/${book_id}`, true);
-    xhttp.send();
-    window.location = "/books"
-    console.log(book_id)
+        xhttp.open("DELETE", `/books/${book_id}`, true);
+        xhttp.send();
+        window.location = "/books"
+        console.log(book_id)
+    }
+
 }
+
+
 

@@ -1,23 +1,24 @@
 [
   {
     "id": 1,
-    "name": "Привет",
-    "author": "B",
+    "name": "Капитанская дочка",
+    "author": "Пушкин",
     "dateCreate": "15.04.2020",
-    "description": "ghfjd",
+    "description": "очень хорошо",
     "isInLib": {
-      "message": true
+      "messageIsInLib": "inLib"
     }
   },
   {
     "id": 2,
-    "name": "AA",
-    "author": "BB",
+    "name": "Алые Паруса",
+    "author": "Лермонтов",
     "dateCreate": "15.04.2020",
-    "description": "ghfjd",
+    "description": "нормально",
     "isInLib": {
-      "message": false,
-      "nameReader": "hgf",
+      "messageIsInLib": "notInLib",
+      "messageIsOverdue": "overdue",
+      "nameReader": "Егор",
       "whenBack": "12.02.42"
     }
 

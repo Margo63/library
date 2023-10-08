@@ -9,8 +9,15 @@ router.get("/books", (req, res, next) => {
 
 router.post("/books",
     (req, res)=>{
-    books[books.length]=req.body;
-    //console.log(books);
+    let max = 0
+    books.map((b)=>{
+        if(max<b.id){
+            max = b.id
+        }
+    })
+    req.body.id = max+1;
+    books[max+1]=req.body;
+    //console.log(typeof books);
     //console.log(req.body);
 });
 
@@ -40,8 +47,23 @@ router.put("/books/:id([0-9a-zA-Z]{1,})",(req,res)=>{
     const changeIndex = books.map((b)=>{
         return parseInt(b.id);
     }).indexOf(parseInt(req.params.id));
-    books[changeIndex] = req.body
-    console.log(req.body)
+
+    var newBody = req.body
+    //console.log(req.body)
+    if(req.body.whatChange === "book"){
+        books[changeIndex]["name"] = newBody.name
+        books[changeIndex]["author"] = newBody.author
+        books[changeIndex]["dateCreate"] = newBody.dateCreate
+        books[changeIndex]["description"] = newBody.description
+    }else if(req.body.whatChange === "user"){
+        //console.log(newBody.isInLib)
+        books[changeIndex]["isInLib"] = newBody.isInLib
+    }
+
+
+
+
+    console.log(books)
 });
 
 
