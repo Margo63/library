@@ -5,58 +5,61 @@
     <title>Title</title>
     <link rel="stylesheet" href="../public/style.css" type="text/css">
     <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+
 </head>
 <body>
 
-<dialog id = "addDialog">
+<dialog id = "addDialog" class = "myDialog">
     <form>
-        <label for="fname">First name:</label><br>
-        <input type="text" id="fname" name="fname"><br>
-        <label for="lname">Last name:</label><br>
-        <input type="text" id="lname" name="lname">
+        <label for="addName">Название:</label><br>
+        <input type="text" id="addName" name="addName" class = "inputText"><br>
+
+        <label for="addAuthor">Автор:</label><br>
+        <input type="text" id="addAuthor" name="addAuthor"class = "inputText"><br>
+
+        <label for="addDate">Дата:</label><br>
+        <input type="text" id="addDate" name="addDate" class = "inputText"><br>
+
+        <label for="addDescription">Описание:</label><br>
+        <input type="text" id="addDescription" name="addDescription"class = "inputText">
     </form>
-    <button id ="closeBut" onclick="onCloseButtonClick()"> Close!</button>
+    <button id ="closeBut" onclick="onCloseButtonClick()"> Добавить</button>
 </dialog>
 
+<div id="formTopModule">
+    <form id ="radioButForm">
+            <div id = "choiceForm">
+                <div>
+                    <input type="radio" id="contactChoice1" name="contact" value="inLib" />
+                    <label for="contactChoice1">В наличии</label>
+                </div>
 
-<form>
+                <div>
+                    <input type="radio" id="contactChoice2" name="contact" value="overdue" />
+                    <label for="contactChoice2">Просроченные</label>
+                </div>
+                <div>
+                    <input type="radio" id="contactChoice3" name="contact" value="none" checked/>
+                    <label for="contactChoice3">None</label>
+                </div>
+            </div>
 
-        <div>
-            <input type="radio" id="contactChoice1" name="contact" value="inLib" />
-            <label for="contactChoice1">В наличии</label>
-
-            <input type="radio" id="contactChoice2" name="contact" value="overdue" />
-            <label for="contactChoice2">Просроченные</label>
-
-            <input type="radio" id="contactChoice3" name="contact" value="none" checked/>
-            <label for="contactChoice3">None</label>
-        </div>
-
-</form>
-
-
-<button id ="addBut" onclick="onAddButtonClick()"> Добавить книгу</button>
-<!--<%- include('ui/book_list')%>-->
-
+    </form>
+    <button id ="addBut" onclick="onAddButtonClick()"> Добавить книгу</button>
+</div>
 
 <div id = "listData">
 
-
     <%listData.forEach((elem)=>{
 
-    // if(maxId<Number(elem.id)){
-    //     maxId = Number(elem.id)
-    // }
-    // console.log(elem.id,maxId)
     %>
 
     <div id = "card" class = "card <%=elem.isInLib.messageIsInLib%> <%=elem.isInLib.messageIsOverdue%>">
         <div id=<%=elem.id%> onclick="load(this)" >
-            <%=elem.name%>
-
+            <%=elem.name%><br>
             <%=elem.author%>
         </div>
-        <button id="delBookButton" onclick="onClickDelBookButton(<%=elem.id%>)">del</button>
+        <button id="delBookButton" onclick="onClickDelBookButton(<%=elem.id%>)">Удалить книгу</button>
     </div>
     <%});%>
 </div>
@@ -65,6 +68,10 @@
 
 <script src = "../public/ajax.js"></script>
 <script>
+
+    var listOfData =`<%-stringListData%>`
+    console.log(JSON.parse(listOfData))
+
     var radioBut = document.querySelectorAll("input[type=radio]");
     let enabledSettings = []
 
@@ -90,5 +97,6 @@
 
 
 </script>
+
 </body>
 </html>

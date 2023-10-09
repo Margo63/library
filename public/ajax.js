@@ -15,9 +15,6 @@
 // });
 
 
-
-
-
 function load(button) {
     let id = button.id;
 
@@ -78,8 +75,10 @@ function sendRequest(method, url, body = null) {
 }
 
 function onAddButtonClick(){
+
     const addDialog = document.getElementById("addDialog")
     addDialog.show()
+
 }
 
 function onCloseButtonClick(){
@@ -88,10 +87,10 @@ function onCloseButtonClick(){
 
     const body = {
         "id":  0,
-        "name": document.getElementById("fname").value,
-        "author": document.getElementById("lname").value,
-        "dateCreate": "10.10.2023",
-        "description": "goood",
+        "name": document.getElementById("addName").value,
+        "author": document.getElementById("addAuthor").value,
+        "dateCreate": document.getElementById("addDate").value,
+        "description": document.getElementById("addDescription").value,
         "isInLib": {
             "messageIsInLib": "inLib"
         }

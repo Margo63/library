@@ -26,13 +26,10 @@ function onCloseChangeDialogButtonClick(cardId){
 
     const body = {
         "whatChange": "book",
-        "name": document.getElementById("ffname").value,
-        "author": document.getElementById("llname").value,
-        "dateCreate": "",
-        "description": "",
-        "isInLib": {
-            "messageIsInLib": "inLib"
-        }
+        "name": document.getElementById("changeName").value,
+        "author": document.getElementById("changeAuthor").value,
+        "dateCreate": document.getElementById("changeDate").value,
+        "description": document.getElementById("changeDesc").value
     }
 
     sendRequest("PUT",`/books/${cardId}`,body)
@@ -78,4 +75,8 @@ function onPutBookClicked(cardId){
 
 function f() {
     document.getElementById('addReaderDialog').show()
+}
+
+function backClick(){
+    window.location = `/books`
 }

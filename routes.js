@@ -4,7 +4,9 @@ let books = require("./data.json");
 const router = express.Router();
 
 router.get("/books", (req, res, next) => {
-    res.render("index.ejs", {listData :books, maxId: 0})
+    //res.send(books)
+    //console.log(JSON.stringify(books))
+    res.render("index.ejs", {listData :books, maxId: 0, stringListData: JSON.stringify(books)})
 });
 
 router.post("/books",

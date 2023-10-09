@@ -1,0 +1,40 @@
+
+body, html {
+    height: 100%;
+    background-image: url("back.jpg");
+    font-family: "Times New Roman";
+    background-position: center;
+    background-repeat: repeat-y;
+    background-size: cover;
+    font-size: 35px;
+}
+
+button{
+    font-family: "Times New Roman";
+    font-size: 35px;
+    background-color: wheat;
+    padding: 10px;
+
+}
+
+.inputText{
+    font-size: 30px;
+    font-family: "Times New Roman";
+}
+
+.myDialog{
+    font-size: 35px;
+    background-image: url("card.jpeg");
+    margin-top: 20vh;
+}
+
+#bookData{
+    background-image: url("card.jpeg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding: 20px;
+}
+
+.fa-solid{
+    color: wheat;
+}
