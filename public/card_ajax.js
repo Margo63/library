@@ -1,34 +1,41 @@
 function sendRequest(method, url, body = null) {
-    const headers = {
-        'Content-Type': 'application/json'
-    }
-
     return fetch(url, {
         method: method,
         body: JSON.stringify(body),
-        headers: headers
-    }).then(response => {
-        if (response.ok) {
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }).then(response => { if (response.ok) {
             return response.json()
         }
-
-        return response.json().then(error => {
-            const e = new Error('Что-то пошло не так')
-            e.data = error
-            throw e
-        })
     })
+}
+function isValidDate(dateString) {
+    const regex = /^\d{2}.\d{2}.\d{4}$/;
+    return regex.test(dateString);
+}
+
+function isValidAuthor(dateString) {
+    const regex = (/^[A-Za-z]+$/);
+    return regex.test(dateString);
 }
 
 function onCloseChangeDialogButtonClick(cardId){
     const changeDialog = document.getElementById("changeDialog")
     changeDialog.close()
-
+    let myDate = "15.11.2022"
+    if(isValidDate(document.getElementById("changeDate").value)){
+        myDate = document.getElementById("changeDate").value
+    }
+    let author = "Lermontov"
+    if(isValidDate(document.getElementById("changeAuthor").value)){
+        author = document.getElementById("changeAuthor").value
+    }
     const body = {
         "whatChange": "book",
         "name": document.getElementById("changeName").value,
-        "author": document.getElementById("changeAuthor").value,
-        "dateCreate": document.getElementById("changeDate").value,
+        "author": author,
+        "dateCreate": myDate,
         "description": document.getElementById("changeDesc").value
     }
 
@@ -53,7 +60,7 @@ function onTakeBookClicked(cardId){
             "messageIsInLib": "notInLib",
             "messageIsOverdue": "ok",
             "nameReader": document.getElementById("fffname").value,
-            "whenBack": now
+            "whenBack": now.getDay()+"."+now.getMonth()+"."+now.getUTCFullYear()
         }
     }
 

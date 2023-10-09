@@ -21,7 +21,70 @@
       "nameReader": "Егор",
       "whenBack": "12.02.42"
     }
-
-
+  },
+  {
+    "id": 3,
+    "name": "Преступление и наказание",
+    "author": "Достоевский",
+    "dateCreate": "15.04.2020",
+    "description": "мне не очень понравилось",
+    "isInLib": {
+      "messageIsInLib": "notInLib",
+      "messageIsOverdue": "overdue",
+      "nameReader": "Никита",
+      "whenBack": "12.02.42"
+    }
+  },
+  {
+    "id": 4,
+    "name": "Мастер и Маргарита",
+    "author": "Булгаков",
+    "dateCreate": "15.04.2020",
+    "description": "кот - топпчик",
+    "isInLib": {
+      "messageIsInLib": "notInLib",
+      "messageIsOverdue": "overdue",
+      "nameReader": "Бегемот",
+      "whenBack": "12.02.42"
+    }
+  },
+  {
+    "id": 5,
+    "name": "Ночь.Улица.Фонарь.Аптека",
+    "author": "Блок",
+    "dateCreate": "15.04.2020",
+    "description": "ночь, улица, фонарь, аптека...",
+    "isInLib": {
+      "messageIsInLib": "notInLib",
+      "messageIsOverdue": "overdue",
+      "nameReader": "Лариса",
+      "whenBack": "12.02.42"
+    }
+  },
+  {
+    "id": 6,
+    "name": "Джейн Эйр",
+    "author": "Шарлота Бронте",
+    "dateCreate": "15.04.2020",
+    "description": "пока читаю",
+    "isInLib": {
+      "messageIsInLib": "notInLib",
+      "messageIsOverdue": "overdue",
+      "nameReader": "Лиза",
+      "whenBack": "12.02.42"
+    }
+  },
+  {
+    "id": 7,
+    "name": "Пикник на обочине",
+    "author": "Стругацкие",
+    "dateCreate": "15.04.2020",
+    "description": "это шедевр",
+    "isInLib": {
+      "messageIsInLib": "notInLib",
+      "messageIsOverdue": "overdue",
+      "nameReader": "Обезьянка",
+      "whenBack": "12.02.42"
+    }
   }
 ]

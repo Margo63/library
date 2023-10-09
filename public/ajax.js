@@ -1,19 +1,12 @@
-// var checkboxState = '';
-// document.ready(function() {
-//     'input'.change(function() {
-//         checkboxState = '';
-//         'input'.each(function() {
-//             if (this.checked) {
-//                 checkboxState += $(this).val() + ' ';
-//             }
-//         });
-//
-//         // отправка запроса и вывод результата
-//         //$('#content').html(checkboxState);
-//         //console.log(checkboxState)
-//     });
-// });
 
+function isValidDate(dateString) {
+    const regex = /^\d{2}.\d{2}.\d{4}$/;
+    return regex.test(dateString);
+}
+function isValidAuthor(dateString) {
+    const regex = (/^[A-Za-z]+$/);
+    return regex.test(dateString);
+}
 
 function load(button) {
     let id = button.id;
@@ -53,24 +46,16 @@ function callAjax(id, callback) {
 }
 
 function sendRequest(method, url, body = null) {
-    const headers = {
-        'Content-Type': 'application/json'
-    }
-
     return fetch(url, {
         method: method,
         body: JSON.stringify(body),
-        headers: headers
+        headers: {
+            'Content-Type': 'application/json'
+        }
     }).then(response => {
         if (response.ok) {
             return response.json()
         }
-
-        return response.json().then(error => {
-            const e = new Error('Что-то пошло не так')
-            e.data = error
-            throw e
-        })
     })
 }
 
@@ -84,12 +69,20 @@ function onAddButtonClick(){
 function onCloseButtonClick(){
     const addDialog = document.getElementById("addDialog")
     addDialog.close()
+    let myDate = "15.11.2022"
+    if(isValidDate(document.getElementById("addDate").value)){
+        myDate = document.getElementById("addDate").value
+    }
 
+    let author = "Lermontov"
+    if(isValidAuthor(document.getElementById("addAuthor").value)){
+        author = document.getElementById("addAuthor").value
+    }
     const body = {
         "id":  0,
         "name": document.getElementById("addName").value,
-        "author": document.getElementById("addAuthor").value,
-        "dateCreate": document.getElementById("addDate").value,
+        "author": author,
+        "dateCreate": myDate,
         "description": document.getElementById("addDescription").value,
         "isInLib": {
             "messageIsInLib": "inLib"

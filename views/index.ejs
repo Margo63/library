@@ -9,6 +9,7 @@
 </head>
 <body>
 
+
 <dialog id = "addDialog" class = "myDialog">
     <form>
         <label for="addName">Название:</label><br>
@@ -48,20 +49,9 @@
     <button id ="addBut" onclick="onAddButtonClick()"> Добавить книгу</button>
 </div>
 
-<div id = "listData">
 
-    <%listData.forEach((elem)=>{
+<div id="conteiner">
 
-    %>
-
-    <div id = "card" class = "card <%=elem.isInLib.messageIsInLib%> <%=elem.isInLib.messageIsOverdue%>">
-        <div id=<%=elem.id%> onclick="load(this)" >
-            <%=elem.name%><br>
-            <%=elem.author%>
-        </div>
-        <button id="delBookButton" onclick="onClickDelBookButton(<%=elem.id%>)">Удалить книгу</button>
-    </div>
-    <%});%>
 </div>
 
 
@@ -69,31 +59,82 @@
 <script src = "../public/ajax.js"></script>
 <script>
 
-    var listOfData =`<%-stringListData%>`
-    console.log(JSON.parse(listOfData))
-
+    //console.log(JSON.parse(listOfData))
+    init()
     var radioBut = document.querySelectorAll("input[type=radio]");
     let enabledSettings = []
 
 
     radioBut.forEach(function(radio) {
-        radio.addEventListener('change', function() {
+        radio.addEventListener('change', async function () {
+            document.getElementById("conteiner").innerHTML=``
             enabledSettings =
                 Array.from(radioBut) // Convert checkboxes to an array to use filter and map.
                     .filter(i => i.checked) // Use Array.filter to remove unchecked checkboxes.
                     .map(i => i.value)[0] // Use Array.map to extract only the checkbox values from the array of objects.
 
-            console.log(enabledSettings)
-            $( ".card" ).css( "transform", "scale(1)" )
+            //console.log(enabledSettings)
+            // $(".card").css("transform", "scale(1)")
+            //
+            // $(".card").css("transform", "scale(0)").filter("." + enabledSettings).css("transform", "scale(1)");
+            //
+            // if (enabledSettings === "none") {
+            //     $(".card").css("transform", "scale(1)")
+            // }
 
-            $( ".card" ).css( "transform", "scale(0)" ).filter("."+enabledSettings).css( "transform", "scale(1)" );
+            let response = await fetch('http://localhost:3000/filter?state='+enabledSettings, // Адрес запроса
+                {
+                    method: 'GET' // Параметры запроса
 
-            if(enabledSettings ==="none"){
-                $(  ".card"  ).css( "transform", "scale(1)" )
-            }
+                });
+            let text = await response.text(); // Текст
+            console.log(text);// HTML-ответ
+            JSON.parse(text).forEach((el)=>{
+                if(el!==null){
+                    console.log(el)
+                    document.getElementById("conteiner").innerHTML+=`
+                <div id = "card" class = "card">
+                <div id=${el.id} onclick="load(this)" >
+            ${el.name}<br>
+            ${el.author}
+        </div>
+        <button id="delBookButton" onclick="onClickDelBookButton(${el.id})">Удалить книгу</button>
+    </div>
+                `
+                }
+
+            })
+
 
         })
     });
+
+    async function init() {
+        document.getElementById("conteiner").innerHTML=``
+        let response = await fetch('http://localhost:3000/filter?state=none', // Адрес запроса
+            {
+                method: 'GET' // Параметры запроса
+
+            });
+        let text = await response.text(); // Текст
+        console.log(text);// HTML-ответ
+        JSON.parse(text).forEach((el) => {
+            if(el!==null){
+                console.log(el)
+                document.getElementById("conteiner").innerHTML += `
+                <div id = "card" class = "card">
+                <div id=${el.id} onclick="load(this)" >
+            ${el.name}<br>
+            ${el.author}
+        </div>
+        <button id="delBookButton" onclick="onClickDelBookButton(${el.id})">Удалить книгу</button>
+    </div>
+                `
+            }
+
+        });
+
+    }
 
 
 </script>

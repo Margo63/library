@@ -33,6 +33,32 @@ router.get("/books/:id([0-9a-zA-Z]{1,})",
     res.render("ui/book_card.ejs",{element :book[0]});
 });
 
+router.get("/filter",
+    (req, res)=>{
+
+
+    if(req.query.state === "inLib"){
+        let newList = books.filter((el)=>{
+            if(el.isInLib.messageIsInLib === "inLib"){
+                return true;
+            }
+        });
+        res.send(JSON.stringify(newList))
+    }else if(req.query.state === "overdue"){
+        let newList = books.filter((el)=>{
+            if(el.isInLib.messageIsOverdue === "overdue"){
+                return true;
+            }
+        });
+        res.send(JSON.stringify(newList))
+    }else{
+        res.send(JSON.stringify(books))
+    }
+
+
+
+    });
+
 
 router.delete("/books/:id([0-9a-zA-Z]{1,})",
     (req, res)=>{
